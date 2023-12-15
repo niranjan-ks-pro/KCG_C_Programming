@@ -1,36 +1,52 @@
+
+
+// C program to reverse a string with special characters
+#include <stdbool.h>
 #include <stdio.h>
-#include <stdlib.h>
-#include <conio.h>
+#include <string.h>
+// Returns true if x is an alphabetic character, false
+// otherwise
+bool isAlphabet(char x)
+{
+    return ((x >= 'A' && x <= 'Z') || (x >= 'a' && x <= 'z'));
+}
+
 void reverse(char str[])
 {
-    int r = stlen(str) - 1, l = 0;
+    // Initialize left and right pointers
+    int r = strlen(str) - 1, l = 0;
 
+    // Traverse string from both ends until 'l' and 'r'
     while (l < r)
     {
-        if (!alpha(str[l]))
+        // Ignore special characters
+        if (!isAlphabet(str[l]))
             l++;
-
-        else if (!alpha(str[r]))
-        {
+        else if (!isAlphabet(str[r]))
             r--;
-        }
+        // Both str[l] and str[r] are not special
         else
         {
             char temp = str[l];
             str[l] = str[r];
             str[r] = temp;
-            l + r;
+            // swap(str[l], str[r]);
+            l++;
             r--;
         }
     }
 }
+
+// Driver code
 int main()
 {
     char str[100];
-    printf("input string");
-    scanf("%s", str);
+    scanf("%[^\n]s", str);
+    printf("\n Input string: %s", str);
+    //  printf("Input string: %s\n", str);
     reverse(str);
-    printf(" out put string %s\n", str);
-
+    printf(" \nOutput string: %s\n", str);
     return 0;
 }
+
+// This code is contributed
